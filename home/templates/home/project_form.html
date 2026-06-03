@@ -1,0 +1,88 @@
+{% extends 'home/dashboard_base.html' %}
+{% load static %}
+
+{% block dash_title %}{{ action }} Project{% endblock %}
+{% block nav_projects %}active{% endblock %}
+{% block page_title %}{{ action }} Project{% endblock %}
+
+{% block dash_content %}
+<div class="row justify-content-center">
+  <div class="col-xl-8 col-lg-10">
+    <div class="glow-card">
+      <div class="card-content" style="padding: clamp(1.5rem, 4vw, 3rem);">
+        <div class="d-flex justify-content-between align-items-center mb-4 pb-2" style="border-bottom: 1px solid var(--card-border);">
+          <h4 style="margin:0; font-weight: 700;">Project Details</h4>
+          <a href="{% url 'dashboard' %}" class="advance-btn advance-btn-outline btn-sm">
+            <i class="fa-solid fa-arrow-left"></i> Cancel
+          </a>
+        </div>
+
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          
+          <div class="row g-3">
+            <div class="col-md-8">
+              <div style="margin-bottom: 1.25rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Project Title</label>
+                {{ form.title }}
+              </div>
+            </div>
+            
+            <div class="col-md-4">
+              <div style="margin-bottom: 1.25rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Display Order</label>
+                {{ form.order }}
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 1.25rem;">
+            <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Description</label>
+            {{ form.description }}
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div style="margin-bottom: 1.25rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Live Demo Link</label>
+                {{ form.link }}
+              </div>
+            </div>
+            
+            <div class="col-md-6">
+              <div style="margin-bottom: 1.25rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">GitHub Repo Link</label>
+                {{ form.github_link }}
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 1.25rem;">
+            <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Technologies / Tags (comma separated)</label>
+            {{ form.tags }}
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Project Image Preview</label>
+            {{ form.image }}
+          </div>
+
+          <div class="glow-card mb-4" style="background: rgba(255,255,255,0.01); border-color: var(--card-border);">
+            <div class="card-content" style="padding: 1.25rem; display: flex; align-items: center; gap: 0.75rem;">
+              {{ form.featured }}
+              <div>
+                <label for="id_featured" style="font-weight: 600; color: var(--text-main); font-size: 0.9rem; cursor: pointer; display: block; margin: 0;">Feature this project</label>
+                <span style="font-size: 0.78rem; color: var(--text-muted);">Featured projects are highlighted at the top of your public portfolio.</span>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="advance-btn w-100" style="padding: 0.9rem;">
+            <i class="fa-solid fa-save"></i> Save Project Settings
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

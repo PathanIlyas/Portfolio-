@@ -1,0 +1,132 @@
+<!-- HERO SECTION -->
+<div class="glow-card bento-hero fade-up" id="home">
+  <div class="card-content" style="padding: clamp(1.5rem, 4vw, 3.5rem);">
+    <div class="row align-items-center w-100 m-0">
+
+      <!-- Left: Text content -->
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <div class="hero-badge" style="margin-bottom: 1.25rem;">
+          <span class="dot"></span>
+          {% if profile.available %}Available for Hire{% else %}Currently Unavailable{% endif %}
+        </div>
+
+        <h1 class="hero-title" style="margin-bottom: 1rem; font-size: clamp(2.4rem, 6vw, 4.4rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05;">
+          Hi, I'm <span class="text-gradient-neon">{{ profile.name }}</span>
+        </h1>
+        <h4 style="color:var(--text-muted); font-weight: 500; margin-bottom: 1.25rem; font-size: clamp(1.05rem, 2.2vw, 1.35rem); letter-spacing: 0.2px;">
+          {{ profile.tagline }}
+        </h4>
+        <p class="hero-sub" style="margin-bottom: 2rem; font-size: 0.95rem; color: var(--text-muted); line-height: 1.75; max-width: 540px;">
+          {{ profile.bio }}
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="hero-btns" style="display: flex; gap: 0.85rem; flex-wrap: wrap; margin-bottom: 2.25rem;">
+          <a href="#projects-wrapper" class="advance-btn" style="background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple)); color: #fff; padding: 0.85rem 1.75rem; border-radius: 10px; font-weight: 700; border: none; box-shadow: 0 0 20px rgba(0, 243, 255, 0.15);">
+            <i class="fa-solid fa-rocket me-2"></i> View Work
+          </a>
+          <a href="#contact" class="advance-btn advance-btn-outline" style="padding: 0.85rem 1.5rem; border-radius: 10px; font-weight: 600;">
+            <i class="fa-regular fa-envelope me-2"></i> Contact Me
+          </a>
+          {% if profile.resume %}
+          <a href="{{ profile.resume.url }}" class="advance-btn advance-btn-outline" style="padding: 0.85rem 1.5rem; border-radius: 10px; font-weight: 600;" download>
+            <i class="fa-solid fa-file-arrow-down me-2"></i> Resume
+          </a>
+          {% endif %}
+        </div>
+
+        <!-- Recruiter Stats Cards -->
+        {% if profile.years_experience or profile.projects_completed or profile.clients_served %}
+        <div class="hero-stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; border-top: 1px solid var(--card-border); padding-top: 2rem;">
+          {% if profile.years_experience %}
+          <div class="stat-card" style="background: rgba(0, 243, 255, 0.02); border-color: var(--card-border); padding: 1rem 1.25rem;">
+            <div class="stat-card-icon" style="background: rgba(0, 243, 255, 0.08); color: var(--accent-cyan); margin-bottom: 0.65rem; width: 36px; height: 36px; font-size: 0.9rem; border-radius: 8px;">
+              <i class="fa-solid fa-briefcase"></i>
+            </div>
+            <div class="stat-card-num text-gradient-neon" style="font-size: 1.6rem; font-weight: 800;">{{ profile.years_experience }}+</div>
+            <div class="stat-card-label" style="font-size: 0.72rem; letter-spacing: 0.5px; text-transform: uppercase;">Experience</div>
+          </div>
+          {% endif %}
+          
+          {% if profile.projects_completed %}
+          <div class="stat-card" style="background: rgba(188, 19, 254, 0.02); border-color: var(--card-border); padding: 1rem 1.25rem;">
+            <div class="stat-card-icon" style="background: rgba(188, 19, 254, 0.08); color: var(--accent-purple); margin-bottom: 0.65rem; width: 36px; height: 36px; font-size: 0.9rem; border-radius: 8px;">
+              <i class="fa-solid fa-folder-open"></i>
+            </div>
+            <div class="stat-card-num text-gradient-neon" style="font-size: 1.6rem; font-weight: 800;">{{ profile.projects_completed }}+</div>
+            <div class="stat-card-label" style="font-size: 0.72rem; letter-spacing: 0.5px; text-transform: uppercase;">Projects</div>
+          </div>
+          {% endif %}
+          
+          {% if profile.clients_served %}
+          <div class="stat-card" style="background: rgba(79, 70, 229, 0.02); border-color: var(--card-border); padding: 1rem 1.25rem;">
+            <div class="stat-card-icon" style="background: rgba(79, 70, 229, 0.08); color: var(--accent-blue); margin-bottom: 0.65rem; width: 36px; height: 36px; font-size: 0.9rem; border-radius: 8px;">
+              <i class="fa-solid fa-user-check"></i>
+            </div>
+            <div class="stat-card-num text-gradient-neon" style="font-size: 1.6rem; font-weight: 800;">{{ profile.clients_served }}+</div>
+            <div class="stat-card-label" style="font-size: 0.72rem; letter-spacing: 0.5px; text-transform: uppercase;">Clients</div>
+          </div>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Right: Mockup Terminal + Picture Frame -->
+      <div class="col-lg-5 offset-lg-1">
+        {% if profile.profile_image %}
+        <div style="display: flex; justify-content: center; margin-bottom: 1.75rem;">
+          <div class="profile-ring" style="width: 130px; height: 130px; border-radius: 50%;">
+            <img src="{{ profile.profile_image.url }}" alt="{{ profile.name }}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="terminal-window">
+          <div class="terminal-header">
+            <div class="mac-btns">
+              <div class="mac-btn mac-close"></div>
+              <div class="mac-btn mac-min"></div>
+              <div class="mac-btn mac-max"></div>
+            </div>
+            <span class="ms-auto text-muted" style="font-size: 0.72rem; font-family: 'Fira Code', monospace;">developer.log</span>
+          </div>
+          <div class="terminal-body" style="padding: 1.25rem;">
+            <div class="term-text" style="font-size: 0.8rem; margin-bottom: 1rem;">
+              $ ssh admin@{{ profile.name|lower|cut:" " }}.dev<br>
+              <span style="color: var(--accent-green)">● authenticated — session established</span>
+            </div>
+            
+            <div class="term-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="term-item">
+                <span>Role</span>
+                <strong style="font-size: 0.82rem; font-weight: 600;">{{ profile.title }}</strong>
+              </div>
+              <div class="term-item">
+                <span>Status</span>
+                <strong class="text-gradient-neon" style="font-size: 0.82rem; font-weight: 600;">
+                  {% if profile.available %}Open for Work{% else %}Unavailable{% endif %}
+                </strong>
+              </div>
+              <div class="term-item">
+                <span>Email</span>
+                <strong style="font-size: 0.75rem; word-break: break-all; font-weight: 600;">{{ profile.email }}</strong>
+              </div>
+              <div class="term-item">
+                <span>GitHub</span>
+                <strong>
+                  <a href="{{ profile.github }}" target="_blank" style="color: var(--accent-cyan); font-size: 0.82rem;">Visit profile</a>
+                </strong>
+              </div>
+            </div>
+            
+            <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--card-border); font-size: 0.72rem; color: var(--text-muted); display: flex; justify-content: space-between; font-family: 'Fira Code', monospace; flex-wrap: wrap; gap: 0.5rem;">
+              <span>Django · Python · REST</span>
+              <span>Production Ready</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

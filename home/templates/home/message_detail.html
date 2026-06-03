@@ -1,0 +1,72 @@
+{% extends 'home/dashboard_base.html' %}
+
+{% block dash_title %}View Message{% endblock %}
+{% block nav_messages %}active{% endblock %}
+{% block page_title %}Read Inquiry{% endblock %}
+
+{% block dash_content %}
+<div class="row justify-content-center">
+  <div class="col-xl-8 col-lg-10">
+    <div class="glow-card">
+      <div class="card-content" style="padding: clamp(1.5rem, 4vw, 3rem);">
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4 pb-2" style="border-bottom: 1px solid var(--card-border);">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <h4 style="margin:0; font-weight: 700;">From: {{ msg.name }}</h4>
+            <span class="badge {% if msg.status == 'new' %}badge-new{% elif msg.status == 'read' %}badge-read{% else %}badge-replied{% endif %}">
+              {{ msg.get_status_display }}
+            </span>
+          </div>
+          <a href="{% url 'message_list' %}" class="advance-btn advance-btn-outline btn-sm">
+            <i class="fa-solid fa-arrow-left"></i> Back to Inbox
+          </a>
+        </div>
+
+        <!-- Meta Info List -->
+        <div class="row g-3 mb-4" style="background: rgba(255,255,255,0.01); border: 1px solid var(--card-border); padding: 1.25rem; border-radius: 12px; margin: 0 0 1.5rem 0;">
+          <div class="col-md-6">
+            <span style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600; display: block;">Email Address</span>
+            <a href="mailto:{{ msg.email }}" style="color: var(--accent-cyan); font-weight: 600; font-size: 0.95rem;">{{ msg.email }}</a>
+          </div>
+          <div class="col-md-6">
+            <span style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600; display: block;">Project Scope / Budget</span>
+            <span style="color: var(--text-main); font-weight: 600; font-size: 0.95rem;">{{ msg.project_type|default:'General Inquiry' }}</span>
+          </div>
+          <div class="col-md-6 mt-3">
+            <span style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600; display: block;">Received Time</span>
+            <span style="color: var(--text-muted); font-size: 0.9rem;">{{ msg.created_at|date:"l, F d, Y @ H:i:s" }}</span>
+          </div>
+        </div>
+
+        <!-- Message Body -->
+        <div class="mb-4">
+          <span style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600; display: block; margin-bottom: 0.5rem;">Message Content</span>
+          <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--card-border); border-radius: 12px; padding: 1.5rem; color: var(--text-main); font-size: 0.95rem; line-height: 1.8; min-height: 150px; white-space: pre-wrap;">{{ msg.message }}</div>
+        </div>
+
+        <!-- Controls -->
+        <div class="d-flex flex-wrap gap-3 align-items-center justify-content-between pt-3" style="border-top: 1px solid var(--card-border);">
+          <form method="POST" style="display: flex; gap: 0.75rem; align-items: center;">
+            {% csrf_token %}
+            <span style="font-size: 0.82rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; white-space: nowrap;">Mark Status:</span>
+            <select name="status" class="advance-input" style="padding: 0.45rem 1rem; width: auto; font-size: 0.85rem;" onchange="this.form.submit()">
+              <option value="new" {% if msg.status == 'new' %}selected{% endif %}>New / Unread</option>
+              <option value="read" {% if msg.status == 'read' %}selected{% endif %}>Read</option>
+              <option value="replied" {% if msg.status == 'replied' %}selected{% endif %}>Replied</option>
+            </select>
+          </form>
+          
+          <div style="display: flex; gap: 0.75rem;">
+            <a href="mailto:{{ msg.email }}?subject=Re: {{ msg.project_type|urlencode }}" class="advance-btn" style="background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple)); color: #fff;">
+              <i class="fa-solid fa-reply"></i> Reply via Email
+            </a>
+            <a href="{% url 'message_delete' msg.pk %}" class="advance-btn btn-danger">
+              <i class="fa-solid fa-trash"></i> Delete message
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

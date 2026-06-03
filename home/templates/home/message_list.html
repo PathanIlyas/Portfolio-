@@ -1,0 +1,57 @@
+{% extends 'home/dashboard_base.html' %}
+
+{% block dash_title %}Inbox Messages{% endblock %}
+{% block nav_messages %}active{% endblock %}
+{% block page_title %}Messages Inbox{% endblock %}
+
+{% block dash_content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h3 style="margin: 0; font-weight: 700; font-size: 1.25rem;">Visitor Inquiries</h3>
+</div>
+
+<div class="dash-table-wrap">
+  <table class="dash-table">
+    <thead>
+      <tr>
+        <th>Status</th>
+        <th>Client Name</th>
+        <th>Client Email</th>
+        <th>Project Scope</th>
+        <th>Received Date</th>
+        <th style="text-align: right;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for msg in inbox_messages %}
+      <tr style="cursor: pointer;" onclick="window.location='{% url 'message_detail' msg.pk %}'">
+        <td>
+          <span class="badge {% if msg.status == 'new' %}badge-new{% elif msg.status == 'read' %}badge-read{% else %}badge-replied{% endif %}">
+            {% if msg.status == 'new' %}<i class="fa-solid fa-circle-exclamation"></i> New
+            {% elif msg.status == 'read' %}<i class="fa-solid fa-envelope-open"></i> Read
+            {% else %}<i class="fa-solid fa-reply"></i> Replied{% endif %}
+          </span>
+        </td>
+        <td style="font-weight: 600; color: var(--text-main);">{{ msg.name }}</td>
+        <td>{{ msg.email }}</td>
+        <td style="color: var(--accent-cyan); font-weight: 500;">{{ msg.project_type|default:'General Inquiry' }}</td>
+        <td style="color: var(--text-muted); font-size: 0.85rem;">{{ msg.created_at|date:"M d, Y · H:i" }}</td>
+        <td style="text-align: right;" onclick="event.stopPropagation();">
+          <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+            <a href="{% url 'message_detail' msg.pk %}" class="advance-btn advance-btn-outline" style="padding: 0.4rem 0.75rem; font-size: 0.78rem; border-radius: 8px;" title="View"><i class="fa-solid fa-eye"></i></a>
+            <a href="{% url 'message_delete' msg.pk %}" class="advance-btn btn-danger" style="padding: 0.4rem 0.75rem; font-size: 0.78rem; border-radius: 8px;" title="Delete"><i class="fa-solid fa-trash"></i></a>
+          </div>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="6" style="text-align: center; padding: 5rem 1rem; color: var(--text-muted);">
+          <i class="fa-solid fa-inbox mb-3" style="font-size: 2.5rem; opacity: 0.5;"></i>
+          <h4 style="margin: 0 0 0.5rem 0; font-weight: 600;">Inbox Empty</h4>
+          <p style="font-size: 0.88rem; margin: 0;">No messages received from the contact form yet.</p>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

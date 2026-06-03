@@ -1,0 +1,26 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block title %}{{ profile.name }} — {{ profile.title }}{% endblock %}
+{% block meta_desc %}{{ profile.bio|truncatechars:160 }}{% endblock %}
+
+{% block content %}
+<!-- Premium Name Intro Screen -->
+<div id="intro-overlay">
+  <div class="intro-content d-flex flex-column align-items-center justify-content-center">
+    <div class="intro-logo-wrapper">
+      <i class="fa-solid fa-bolt intro-logo text-gradient-neon"></i>
+    </div>
+  </div>
+</div>
+
+<main class="container advance-section" style="position:relative;z-index:1;">
+  <div id="bento-cards">
+    {% include 'home/partials/_hero.html' %}
+    {% include 'home/partials/_about.html' %}
+    {% include 'home/partials/_expertise.html' %}
+    {% include 'home/partials/_projects.html' %}
+    {% include 'home/partials/_contact.html' %}
+  </div>
+</main>
+{% endblock %}

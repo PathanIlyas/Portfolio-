@@ -1,0 +1,80 @@
+{% extends 'home/dashboard_base.html' %}
+
+{% block dash_title %}{{ action }} Skill{% endblock %}
+{% block nav_skills %}active{% endblock %}
+{% block page_title %}{{ action }} Skill{% endblock %}
+
+{% block dash_content %}
+<div class="row justify-content-center">
+  <div class="col-xl-7 col-lg-9">
+    <div class="glow-card">
+      <div class="card-content" style="padding: clamp(1.5rem, 4vw, 3rem);">
+        <div class="d-flex justify-content-between align-items-center mb-4 pb-2" style="border-bottom: 1px solid var(--card-border);">
+          <h4 style="margin:0; font-weight: 700;">Skill Properties</h4>
+          <a href="{% url 'skill_list' %}" class="advance-btn advance-btn-outline btn-sm">
+            <i class="fa-solid fa-arrow-left"></i> Cancel
+          </a>
+        </div>
+
+        <form method="POST">
+          {% csrf_token %}
+          
+          <div class="row g-3">
+            <div class="col-md-7">
+              <div style="margin-bottom: 1.25rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Skill Name</label>
+                {{ form.name }}
+              </div>
+            </div>
+            
+            <div class="col-md-5">
+              <div style="margin-bottom: 1.25rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Category</label>
+                {{ form.category }}
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div style="margin-bottom: 1.25rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Proficiency Percentage (0-100)</label>
+                {{ form.percentage }}
+              </div>
+            </div>
+            
+            <div class="col-md-6">
+              <div style="margin-bottom: 1.25rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Display Order</label>
+                {{ form.order }}
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">FontAwesome Icon Class</label>
+                {{ form.icon_class }}
+                <span style="font-size: 0.72rem; color: var(--text-muted); display: block; margin-top: 0.25rem;">e.g., fa-brands fa-python or fa-solid fa-database</span>
+              </div>
+            </div>
+            
+            <div class="col-md-6">
+              <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Glow Hex Color</label>
+                {{ form.color }}
+                <span style="font-size: 0.72rem; color: var(--text-muted); display: block; margin-top: 0.25rem;">e.g., #00f3ff or #bc13fe</span>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="advance-btn w-100" style="padding: 0.9rem;">
+            <i class="fa-solid fa-save"></i> Save Skill Settings
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

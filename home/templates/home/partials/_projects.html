@@ -1,0 +1,30 @@
+<!-- Projects Header & Filters -->
+<div id="projects-wrapper" style="grid-column: span 12; margin-top: 2rem;" class="fade-up">
+    <!-- Section Title -->
+    <h2 class="mb-4">Featured Projects</h2>
+    
+    <!-- Search & Filter Controls -->
+    <div class="row g-3 align-items-center justify-content-between mb-4">
+        <div class="col-md-5 col-lg-4">
+            <div class="search-box-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="project-search" placeholder="Search by name, tech..." class="advance-input w-100" style="padding-top: 0.65rem; padding-bottom: 0.65rem;">
+            </div>
+        </div>
+        <div class="col-md-7 col-lg-8 text-md-end">
+            <div class="category-tabs d-flex flex-wrap gap-2 justify-content-md-end">
+                <button class="category-tab active" data-category="all">All Work</button>
+                <button class="category-tab" data-category="Full Stack Projects">Full Stack</button>
+                <button class="category-tab" data-category="Django Projects">Django</button>
+                <button class="category-tab" data-category="AI Projects">AI</button>
+                <button class="category-tab" data-category="Ecommerce Projects">Ecommerce</button>
+                <button class="category-tab" data-category="Dashboard Projects">Dashboards</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Projects Grid Container -->
+    <div id="dynamic-projects" class="row g-4 m-0 w-100">
+        <!-- JS will render dynamic cards here -->
+    </div>
+</div>

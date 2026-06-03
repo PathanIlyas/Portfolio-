@@ -1,0 +1,116 @@
+<!-- CONTACT SECTION -->
+<div class="glow-card bento-contact fade-up" id="contact" style="margin-top:1rem;background:linear-gradient(135deg,rgba(0,243,255,0.03),rgba(188,19,254,0.03));">
+  <div class="card-content" style="padding: clamp(1.5rem, 4vw, 3.5rem);">
+    <div class="row w-100 m-0">
+
+      <!-- Left: Contact Info -->
+      <div class="col-lg-5 mb-4 mb-lg-0" style="padding-right: clamp(0px, 3vw, 3rem);">
+        <div class="hero-badge mb-3">
+          <span class="dot"></span>
+          {% if profile.available %}Available for Hire{% else %}Currently Unavailable{% endif %}
+        </div>
+        <h2 class="mb-3" style="font-size:clamp(1.8rem,4vw,3rem);line-height:1.1;">
+          Let's Build <br><span class="text-gradient-neon">Together</span>
+        </h2>
+        <p class="text-muted mb-4" style="font-size:0.95rem;line-height:1.7;">
+          Have an idea? I'd love to hear about it. Send me a message and I'll respond as soon as possible.
+        </p>
+
+        <div class="contact-info-card">
+          <div class="contact-icon" style="background:rgba(0,243,255,0.1);border:1px solid rgba(0,243,255,0.3);color:var(--accent-cyan);">
+            <i class="fa-regular fa-envelope"></i>
+          </div>
+          <div style="min-width:0;">
+            <div style="font-size:0.72rem;color:var(--text-muted);margin-bottom:0.1rem;">Email</div>
+            <a href="mailto:{{ profile.email }}" style="color:var(--text-main);font-weight:600;font-size:0.9rem;word-break:break-all;">
+              {{ profile.email }}
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-info-card">
+          <div class="contact-icon" style="background:rgba(188,19,254,0.1);border:1px solid rgba(188,19,254,0.3);color:var(--accent-purple);">
+            <i class="fa-brands fa-github"></i>
+          </div>
+          <div>
+            <div style="font-size:0.72rem;color:var(--text-muted);margin-bottom:0.1rem;">GitHub</div>
+            <a href="{{ profile.github }}" target="_blank" style="color:var(--text-main);font-weight:600;font-size:0.9rem;">View Profile</a>
+          </div>
+        </div>
+
+        <div class="contact-info-card">
+          <div class="contact-icon" style="background:rgba(79,70,229,0.1);border:1px solid rgba(79,70,229,0.3);color:var(--accent-blue);">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </div>
+          <div>
+            <div style="font-size:0.72rem;color:var(--text-muted);margin-bottom:0.1rem;">LinkedIn</div>
+            <a href="{{ profile.linkedin }}" target="_blank" style="color:var(--text-main);font-weight:600;font-size:0.9rem;">Connect</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="col-lg-7">
+        <div style="background:rgba(255,255,255,0.02);border:1px solid var(--card-border);border-radius:18px;padding:clamp(1.25rem,3vw,2.5rem);position:relative;overflow:hidden;">
+          <div style="position:absolute;top:-50px;right:-50px;width:150px;height:150px;background:var(--accent-purple);filter:blur(80px);opacity:0.12;pointer-events:none;"></div>
+
+          {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-success">
+            <i class="fa-solid fa-circle-check" style="flex-shrink:0;"></i>
+            <span>{{ message }}</span>
+          </div>
+          {% endfor %}
+          {% endif %}
+
+          <form method="POST" action="{% url 'index' %}" style="position:relative;z-index:2;">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-sm-6 mb-3">
+                <label class="form-label">Your Name</label>
+                <div class="input-group-advance">
+                  <i class="fa-regular fa-user"></i>
+                  <input type="text" name="name" class="advance-input" required placeholder="John Doe"
+                    value="{% if user.is_authenticated %}{{ user.first_name|default:user.email }}{% endif %}">
+                </div>
+              </div>
+              <div class="col-sm-6 mb-3">
+                <label class="form-label">Your Email</label>
+                <div class="input-group-advance">
+                  <i class="fa-regular fa-envelope"></i>
+                  <input type="email" name="email" class="advance-input" required placeholder="john@example.com"
+                    value="{% if user.is_authenticated %}{{ user.email }}{% endif %}">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Project Type</label>
+              <div class="input-group-advance">
+                <i class="fa-solid fa-layer-group"></i>
+                <select name="project_type" class="advance-input" required>
+                  <option value="" disabled selected>Select Project Type</option>
+                  <option value="Landing Page">Landing Page</option>
+                  <option value="Website">Full Website</option>
+                  <option value="Dashboard">Dashboard / Admin Panel</option>
+                  <option value="API">REST API</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Your Message</label>
+              <div class="input-group-advance" style="align-items:flex-start;">
+                <i class="fa-regular fa-comment-dots" style="top:0.9rem;"></i>
+                <textarea name="message" class="advance-input" rows="4" required placeholder="Tell me about your project..."></textarea>
+              </div>
+            </div>
+            <button type="submit" class="btn-neon">
+              <i class="fa-regular fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

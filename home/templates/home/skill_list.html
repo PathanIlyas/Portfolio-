@@ -1,0 +1,76 @@
+{% extends 'home/dashboard_base.html' %}
+
+{% block dash_title %}Skills Directory{% endblock %}
+{% block nav_skills %}active{% endblock %}
+{% block page_title %}Skills & Expertise{% endblock %}
+
+{% block dash_content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h3 style="margin: 0; font-weight: 700; font-size: 1.25rem;">Skills Management</h3>
+  <a href="{% url 'skill_add' %}" class="advance-btn btn-sm">
+    <i class="fa-solid fa-plus"></i> Add Skill
+  </a>
+</div>
+
+<div class="dash-table-wrap">
+  <table class="dash-table">
+    <thead>
+      <tr>
+        <th>Icon</th>
+        <th>Skill Name</th>
+        <th>Category</th>
+        <th>Skill Level</th>
+        <th>Display Order</th>
+        <th style="text-align: right;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for skill in skills %}
+      <tr>
+        <td style="width: 60px; font-size: 1.2rem;">
+          {% if skill.icon_class %}
+          <i class="{{ skill.icon_class }}" style="color: {{ skill.color|default:'var(--accent-cyan)' }};"></i>
+          {% else %}
+          <i class="fa-solid fa-square-poll-horizontal" style="color: var(--text-muted);"></i>
+          {% endif %}
+        </td>
+        <td style="font-weight: 600; color: var(--text-main);">{{ skill.name }}</td>
+        <td>
+          <span style="font-size: 0.72rem; padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 600; text-transform: uppercase;
+            {% if skill.category == 'backend' %}background: rgba(0,243,255,0.08); color: var(--accent-cyan); border: 1px solid rgba(0,243,255,0.15);
+            {% elif skill.category == 'frontend' %}background: rgba(188,19,254,0.08); color: var(--accent-purple); border: 1px solid rgba(188,19,254,0.15);
+            {% elif skill.category == 'devops' %}background: rgba(79,70,229,0.08); color: var(--accent-blue); border: 1px solid rgba(79,70,229,0.15);
+            {% else %}background: rgba(122,127,142,0.08); color: var(--text-muted); border: 1px solid rgba(122,127,142,0.15);{% endif %}">
+            {{ skill.get_category_display }}
+          </span>
+        </td>
+        <td>
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <div style="flex: 1; height: 6px; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden; max-width: 120px;">
+              <div style="height: 100%; width: {{ skill.percentage }}%; background: {{ skill.color|default:'var(--accent-cyan)' }}; border-radius: 10px;"></div>
+            </div>
+            <span style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted);">{{ skill.percentage }}%</span>
+          </div>
+        </td>
+        <td style="color: var(--text-muted); font-size: 0.88rem;">{{ skill.order }}</td>
+        <td style="text-align: right;">
+          <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+            <a href="{% url 'skill_edit' skill.pk %}" class="advance-btn advance-btn-outline" style="padding: 0.4rem 0.75rem; font-size: 0.78rem; border-radius: 8px;" title="Edit"><i class="fa-solid fa-pen"></i></a>
+            <a href="{% url 'skill_delete' skill.pk %}" class="advance-btn btn-danger" style="padding: 0.4rem 0.75rem; font-size: 0.78rem; border-radius: 8px;" title="Delete"><i class="fa-solid fa-trash"></i></a>
+          </div>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="6" style="text-align: center; padding: 5rem 1rem; color: var(--text-muted);">
+          <i class="fa-solid fa-code mb-3" style="font-size: 2.5rem; opacity: 0.5;"></i>
+          <h4 style="margin: 0 0 0.5rem 0; font-weight: 600;">No Skills Found</h4>
+          <p style="font-size: 0.88rem; margin-bottom: 1.5rem;">List languages, frameworks, or databases here.</p>
+          <a href="{% url 'skill_add' %}" class="advance-btn btn-sm"><i class="fa-solid fa-plus"></i> Add Skill</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

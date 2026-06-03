@@ -1,0 +1,103 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block title %}About | {{ name|default:'Advance Portfolio' }}{% endblock %}
+
+{% block content %}
+<main class="container advance-section mt-5">
+    <div class="row">
+        <div class="col-12 mb-5 fade-up">
+            <h1 class="display-4 fw-bold">About <span class="text-gradient-neon">Me</span></h1>
+            <p class="text-muted" style="font-size: 1.1rem; max-width: 800px; line-height: 1.7;">
+                I am a Full-Stack Software Engineer with a passion for designing scalable backends, clean APIs, and modern frontend user experiences. Learn more about my journey, technical experience, and goals below.
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="row g-4">
+        <!-- Professional Philosophy & Journey -->
+        <div class="col-lg-7 fade-up">
+            <div class="glow-card h-100">
+                <div class="card-content" style="padding: clamp(1.5rem, 4vw, 3rem);">
+                    <h3 class="mb-4 d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-code text-gradient-neon"></i> My Journey & Philosophy
+                    </h3>
+                    <div class="text-muted" style="line-height: 1.8; font-size: 0.95rem;">
+                        <p class="mb-3">
+                            My software engineering journey began with building basic scripts and understanding algorithm analysis. This curiosity quickly evolved into a passion for architecting web solutions. Over the years, I have specialized in <strong>Python & Django</strong> for writing secure, performant server logic, alongside modern HTML5, CSS3, and JavaScript to bring user interfaces to life.
+                        </p>
+                        <p class="mb-3">
+                            <strong>Problem Solving Approach:</strong> I approach engineering by first mapping out data models and workflows. I place a heavy emphasis on optimizing database interactions, API security, modular codebases, and clean abstraction layers. Ensuring zero redundant queries and robust unit test coverages are key parts of my daily routine.
+                        </p>
+                        <p class="mb-3">
+                            <strong>Mindset & Future Goals:</strong> I thrive on solving complex technical challenges and translating business rules into high-performance web systems. I am currently focused on expanding my expertise in system design, serverless microservices, and AI integrations to keep pushing boundaries in web development.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education & Certifications -->
+        <div class="col-lg-5 fade-up" style="transition-delay: 0.1s;">
+            <div class="glow-card h-100">
+                <div class="card-content" style="padding: clamp(1.5rem, 4vw, 3rem);">
+                    <h3 class="mb-4 d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-graduation-cap text-gradient-neon"></i> Education
+                    </h3>
+                    <div class="mb-4">
+                        <h5 class="mb-1 text-main">Bachelor of Science in Computer Science</h5>
+                        <p class="text-gradient-neon mb-1" style="font-size: 0.88rem;">University of Technology | 2017 - 2021</p>
+                        <p class="text-muted mb-0" style="font-size: 0.9rem;">Focused on algorithms, software design, and database systems.</p>
+                    </div>
+                    
+                    <hr style="border-color: rgba(255,255,255,0.06); margin: 2rem 0;">
+                    
+                    <h3 class="mb-4 d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-certificate text-gradient-neon"></i> Certifications
+                    </h3>
+                    <ul class="text-muted" style="padding-left: 1.2rem; line-height: 2; font-size: 0.95rem;">
+                        <li>Advanced Django Development & Architecture</li>
+                        <li>PostgreSQL Database Tuning & Scaling</li>
+                        <li>Docker and Kubernetes Container Orchestration</li>
+                        <li>Modern JavaScript & Advanced DOM manipulation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Experience Timeline -->
+        <div class="col-12 fade-up" style="transition-delay: 0.2s;">
+            <div class="glow-card">
+                <div class="card-content" style="padding: clamp(1.5rem, 4vw, 3rem);">
+                    <h3 class="mb-5 d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-briefcase text-gradient-neon"></i> Professional Timeline
+                    </h3>
+                    
+                    <div class="timeline-container" style="position: relative; padding-left: 2rem; border-left: 2px solid var(--card-border);">
+                        <!-- Item 1 -->
+                        <div class="timeline-item mb-5" style="position: relative;">
+                            <div style="position: absolute; left: calc(-2rem - 6px); top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent-cyan); box-shadow: 0 0 10px var(--accent-cyan);"></div>
+                            <h4 class="mb-1">Senior Django Developer</h4>
+                            <p class="text-gradient-neon mb-2" style="font-size: 0.9rem; font-weight: 500;">Tech Innovations Inc. | 2023 - Present</p>
+                            <p class="text-muted mb-0" style="font-size: 0.95rem; line-height: 1.7;">
+                                Leading developers in designing high-concurrency backend portals. Developed data ingestion scripts that reduced database queries by 45%. Oversaw the implementation of Django REST APIs integrated with external Stripe gateways and automated notifications.
+                            </p>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="timeline-item" style="position: relative;">
+                            <div style="position: absolute; left: calc(-2rem - 6px); top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent-purple); box-shadow: 0 0 10px var(--accent-purple);"></div>
+                            <h4 class="mb-1">Full Stack Developer</h4>
+                            <p class="text-gradient-neon mb-2" style="font-size: 0.9rem; font-weight: 500;">Creative Solutions | 2021 - 2023</p>
+                            <p class="text-muted mb-0" style="font-size: 0.95rem; line-height: 1.7;">
+                                Built and launched client facing web projects using Django, JavaScript, CSS3/HTML5, and Bootstrap. Improved loading metrics on core interfaces by 30% through static asset bundle optimization and query caching.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

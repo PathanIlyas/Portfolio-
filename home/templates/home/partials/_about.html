@@ -1,0 +1,92 @@
+<!-- ABOUT SECTION -->
+<div class="glow-card bento-about fade-up" id="about" style="transition-delay:0.1s;">
+  <div class="card-content" style="padding: clamp(1.5rem, 4vw, 3.5rem);">
+    <div class="row w-100 m-0 align-items-start">
+
+      <!-- Left: Narrative -->
+      <div class="col-lg-7 mb-4 mb-lg-0" style="padding-right: clamp(0px, 3vw, 3rem);">
+        <p class="text-muted text-uppercase mb-2" style="letter-spacing:2px;font-size:0.72rem;font-weight:600;">About Me</p>
+        <h2 class="mb-3" style="font-size:clamp(1.6rem,3.5vw,2.4rem);">
+          Building <span class="text-gradient-neon">Scalable Systems</span> & Clean UIs
+        </h2>
+        
+        <div class="about-narrative text-muted" style="line-height:1.8; font-size:0.95rem;">
+          <p class="mb-3">
+            I am a Full-Stack Developer with a deep focus on crafting high-performance, maintainable software. My journey started with exploring computer science fundamentals and quickly evolved into designing full-stack architectures. I specialize in building robust backend services using <strong>Python and Django</strong>, paired with responsive, highly polished user interfaces.
+          </p>
+          <p class="mb-3">
+            <strong>My Problem-Solving Approach:</strong> I believe in clean code, modular architecture, and thorough database optimization. Whether it is reducing database roundtrips using select_related/prefetch_related or profiling API bottlenecks, I build with performance, security, and developer ergonomics in mind.
+          </p>
+          <p class="mb-3">
+            <strong>Professional Goals & Mindset:</strong> I am driven to build products that deliver exceptional user experiences at scale. I maintain a continuous learning mindset, staying at the forefront of cloud deployment strategies, security protocols, and advanced backend patterns.
+          </p>
+        </div>
+
+        <!-- Tech List Grid -->
+        <h4 class="mt-4 mb-3" style="font-size: 1.1rem; font-weight: 700; letter-spacing: 0.5px;">Core Stack</h4>
+        <div class="about-list">
+          <div class="about-item">
+            <h5><i class="fa-solid fa-server me-2" style="color:var(--accent-cyan);"></i> Backend</h5>
+            <p>Python · Django · REST APIs · FastAPI</p>
+          </div>
+          <div class="about-item">
+            <h5><i class="fa-solid fa-desktop me-2" style="color:var(--accent-purple);"></i> Frontend</h5>
+            <p>HTML5 · CSS3 · JavaScript · Bootstrap 5</p>
+          </div>
+          <div class="about-item">
+            <h5><i class="fa-solid fa-database me-2" style="color:var(--accent-blue);"></i> Database & Cache</h5>
+            <p>PostgreSQL · SQLite · Redis</p>
+          </div>
+          <div class="about-item">
+            <h5><i class="fa-brands fa-docker me-2" style="color:#2496ED;"></i> Tools & DevOps</h5>
+            <p>Docker · Git & GitHub · Linux · CI/CD</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Stats Grid -->
+      <div class="col-lg-5">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+          <div class="stat-card" style="background:rgba(0,243,255,0.05);border-color:rgba(0,243,255,0.15);">
+            <div class="stat-card-icon" style="background:rgba(0,243,255,0.1);color:var(--accent-cyan);">
+              <i class="fa-solid fa-briefcase"></i>
+            </div>
+            <div class="stat-card-num text-gradient-neon">{{ profile.years_experience }}+</div>
+            <div class="stat-card-label">Years Experience</div>
+          </div>
+          <div class="stat-card" style="background:rgba(188,19,254,0.05);border-color:rgba(188,19,254,0.15);">
+            <div class="stat-card-icon" style="background:rgba(188,19,254,0.1);color:var(--accent-purple);">
+              <i class="fa-solid fa-folder-open"></i>
+            </div>
+            <div class="stat-card-num text-gradient-neon">{{ profile.projects_completed }}+</div>
+            <div class="stat-card-label">Projects Done</div>
+          </div>
+          <div class="stat-card" style="background:rgba(79,70,229,0.05);border-color:rgba(79,70,229,0.15);">
+            <div class="stat-card-icon" style="background:rgba(79,70,229,0.1);color:var(--accent-blue);">
+              <i class="fa-solid fa-circle-nodes"></i>
+            </div>
+            <div class="stat-card-num text-gradient-neon">100%</div>
+            <div class="stat-card-label">Clean Code Focus</div>
+          </div>
+          <div class="stat-card" style="background:rgba(16,185,129,0.05);border-color:rgba(16,185,129,0.15);">
+            <div class="stat-card-icon" style="background:rgba(16,185,129,0.1);color:var(--accent-green);">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div class="stat-card-num" style="color:var(--accent-green);">{% if profile.available %}Open{% else %}Busy{% endif %}</div>
+            <div class="stat-card-label">Availability</div>
+          </div>
+        </div>
+
+        <div style="margin-top:1.5rem;display:flex;gap:0.75rem;flex-wrap:wrap;">
+          <a href="{{ profile.github }}" target="_blank" class="advance-btn advance-btn-outline" style="flex:1;min-width:120px;justify-content:center;">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+          <a href="{{ profile.linkedin }}" target="_blank" class="advance-btn advance-btn-outline" style="flex:1;min-width:120px;justify-content:center;">
+            <i class="fa-brands fa-linkedin-in"></i> LinkedIn
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
