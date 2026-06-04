@@ -166,7 +166,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
     'home',
@@ -267,22 +266,17 @@ if CLOUDINARY_STORAGE['CLOUD_NAME'] and CLOUDINARY_STORAGE['API_KEY'] and CLOUDI
 else:
     DEFAULT_STORAGE_BACKEND = "django.core.files.storage.FileSystemStorage"
 
-from whitenoise.storage import CompressedManifestStaticFilesStorage
-
-class SafeManifestStaticFilesStorage(CompressedManifestStaticFilesStorage):
-    manifest_strict = False
-
 STORAGES = {
     "default": {
         "BACKEND": DEFAULT_STORAGE_BACKEND,
     },
     "staticfiles": {
-        "BACKEND": "portfolio.settings.SafeManifestStaticFilesStorage",
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
 
 # Backward compatibility for django-cloudinary-storage which relies on deprecated settings
-STATICFILES_STORAGE = "portfolio.settings.SafeManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
