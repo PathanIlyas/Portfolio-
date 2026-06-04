@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="glow-card bento-project" style="height: 100%; display: flex; flex-direction: column;">
               <div class="card-content d-flex flex-grow-1 flex-column">
                 <div class="project-img-wrapper" style="position: relative; height: 190px; overflow: hidden; border-bottom: 1px solid var(--card-border); background: #000;">
-                  <img src="${proj.image}" alt="${proj.title}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+                  <img src="${proj.image}" alt="${proj.title}" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80';" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
                   <div style="position: absolute; top: 0.75rem; right: 0.75rem; background: rgba(5,5,8,0.75); backdrop-filter: blur(10px); padding: 0.25rem 0.65rem; border-radius: 50px; font-size: 0.7rem; border: 1px solid var(--card-border); font-weight: 600; color: var(--text-main);">
                     ${proj.category}
                   </div>
